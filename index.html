@@ -22,40 +22,22 @@
             <div class="star"><i class="fas fa-star"></i></div>
         </div>
     </div>
-    <div class="music-controls">
-        <button id="start-music"><i class="fas fa-play"></i></button>
-        <button id="mute-music"><i class="fas fa-volume-up"></i></button>
-        <audio id="background-music" src="background.mp3" preload="auto" loop></audio>
-    </div>
+    <audio id="background-music" src="background.mp3" preload="auto" loop></audio>
     <script>
         const envelope = document.querySelector('.envelope-wrapper');
-        envelope.addEventListener('click', () => {
-            envelope.classList.toggle('flap');
-        });
-
-        const startMusicButton = document.getElementById('start-music');
-        const muteButton = document.getElementById('mute-music');
         const music = document.getElementById('background-music');
-
         let musicStarted = false;
 
-        startMusicButton.addEventListener('click', () => {
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('flap');
+
+            // Start the music when the envelope is clicked/opened
             if (!musicStarted) {
                 music.play().then(() => {
                     musicStarted = true;
                 }).catch((error) => {
                     console.error('Error playing music:', error);
                 });
-            }
-        });
-
-        muteButton.addEventListener('click', () => {
-            if (music.muted) {
-                music.muted = false;
-                muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-            } else {
-                music.muted = true;
-                muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
             }
         });
     </script>
